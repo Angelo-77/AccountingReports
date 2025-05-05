@@ -61,9 +61,9 @@ Cumulative Measures and Rolling 12-Month Averages
 
 Dynamic titles and KPI cards for enhanced interactivity
 
-Measures divided in folders: 
-📷 ![Image](https://github.com/user-attachments/assets/c986e27a-a89a-4d1c-b70c-d9b717293ed9)
-To see some measures you can click in this folder [DaxMeasures](https://github.com/Angelo-77/AccountingReports/blob/3abb17219ab13573b99813746d97a9f4bb0beeb8/DaxMeasures)
+# Measures divided in folders: 
+> 📷 ![Image](https://github.com/user-attachments/assets/c986e27a-a89a-4d1c-b70c-d9b717293ed9)
+> 🛠 To see some measures you can click in this folder [DaxMeasures](https://github.com/Angelo-77/AccountingReports/blob/3abb17219ab13573b99813746d97a9f4bb0beeb8/DaxMeasures)
 
 ## 4. 🎨 Layout & Design (via Figma)
 Designed wireframes and color palette in Figma
@@ -90,9 +90,7 @@ Liabilities: Increased moderately, particularly in Salary and Other Payables, wh
 # 5.2 Income Statement
 Operating Profit: Although we saw an 11.52% YoY increase, its vertical contribution decreased by 8.15%, indicating reduced lucrativity.
 
-Revenue & Cost:
-
-Net Sales grew 21.41%, but Cost of Sales grew 27.29%, shrinking the gross margin.
+Revenue & Cost: Net Sales grew 21.41%, but Cost of Sales grew 27.29%, shrinking the gross margin.
 
 Operating Expenses: Increased 23.73%, which is aligned with revenue growth and within expectations.
 
@@ -100,7 +98,7 @@ Depreciation: Significant increase of 55.09% YoY and 27.73% in vertical analysis
 
 Discounts: A positive highlight — decreased 46.25% YoY and 55.73% vertically, boosting net sales.
 
-⚠️ Key Takeaways:
+## ⚠️ Key Takeaways:
 Review Cost of Sales drivers to improve margins.
 
 Reassess CapEx strategy to ensure fixed asset investments are necessary and productive.
