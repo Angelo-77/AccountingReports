@@ -3,7 +3,7 @@ This project presents a comprehensive financial overview through two interactive
 
 ● Balance Sheet ![Image](https://github.com/user-attachments/assets/6fab2bec-fed7-4cd4-afa1-f98d677e5a12)
 --
-● Income Statement ![Image](https://github.com/user-attachments/assets/b1141529-a8ad-4aa1-ae43-9aba38153d52)
+● Income Statement ![Image](https://github.com/user-attachments/assets/f70553c1-3ea1-4bc7-8600-27b433a30466)
 
 ## 1. 🛠️ SQL Treatments
 All data transformations and aggregations prior to loading into Power BI were handled via SQL, including:
