@@ -62,7 +62,7 @@ Cumulative Measures and Rolling 12-Month Averages
 Dynamic titles and KPI cards for enhanced interactivity
 
 # Measures divided in folders: 
-> 📷 ![Image](https://github.com/user-attachments/assets/c986e27a-a89a-4d1c-b70c-d9b717293ed9)
+> 📷 ![Image](https://github.com/user-attachments/assets/d1c21b73-0bba-4f3a-a1fa-3fd55a286d75)
 ________
 
 > 🛠 To see some measures you can click in this folder [DaxMeasures](https://github.com/Angelo-77/AccountingReports/blob/3abb17219ab13573b99813746d97a9f4bb0beeb8/DaxMeasures)
