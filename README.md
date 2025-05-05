@@ -1,8 +1,8 @@
 ## 📊 Accounting Reports Dashboard
 This project presents a comprehensive financial overview through two interactive Power BI pages:
 
-> Balance Sheet
-> Income Statement
+● Balance Sheet
+● Income Statement
 
 ## 1. 🛠️ SQL Treatments
 All data transformations and aggregations prior to loading into Power BI were handled via SQL, including:
