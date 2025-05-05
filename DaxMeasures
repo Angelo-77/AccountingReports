@@ -2,7 +2,7 @@
 
 # 🧲 Here are some examples of measures, i`m not showing all formulas. If you want all measures, you can contact with me. 
 
-## 🛠 Balance Sheet Measures
+# 🛠 Balance Sheet Measures
 
 ● M | % BalanceSheet Amount (Assets - Change - PercentImg) = 
 VAR vAmountACT = 
@@ -269,7 +269,7 @@ RETURN
     )
 
 
-## 📉 Income Statement Measures
+# 📉 Income Statement Measures
 
 ● M | % VerticalAnalysis(Inc) = 
 
