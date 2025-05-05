@@ -8,7 +8,7 @@ This project presents a comprehensive financial overview through two interactive
 ## 1. 🛠️ SQL Treatments
 All data transformations and aggregations prior to loading into Power BI were handled via SQL, including:
 
-Standardization of date formats and creation of date dimension (DimDate)
+Standardization of date formats and creation of date dimension (DimDate) -  [DimCalendar](https://github.com/Angelo-77/AccountingReports/blob/main/DimCalendar)
 
 Categorization of GL accounts into Assets, Liabilities, Revenues, Expenses, etc.
 
