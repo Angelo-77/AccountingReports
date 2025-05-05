@@ -63,7 +63,8 @@ Dynamic titles and KPI cards for enhanced interactivity
 
 # Measures divided in folders: 
 > 📷 ![Image](https://github.com/user-attachments/assets/c986e27a-a89a-4d1c-b70c-d9b717293ed9)
---
+________
+
 > 🛠 To see some measures you can click in this folder [DaxMeasures](https://github.com/Angelo-77/AccountingReports/blob/3abb17219ab13573b99813746d97a9f4bb0beeb8/DaxMeasures)
 
 ## 4. 🎨 Layout & Design (via Figma)
