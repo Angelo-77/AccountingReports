@@ -1,0 +1,51 @@
+## 🛠 SQL Code - Accounting Reports
+# Since our dataset was denormalized, i only created views to inpit in PowerBI. In this project we didnt have any hard work with SQL besides the DimCalendar procedure that you can see in this folder [DimCalendar](https://github.com/Angelo-77/AccountingReports/blob/52c70298798b7a085b188f1d8cb8838854e8d1fc/DimCalendar).  
+
+
+##👩‍💻 Views
+CREATE VIEW vwDimAccount AS 
+
+SELECT 
+ AccountKey
+,ParentAccountKey
+,AccountCodeAlternateKey
+,ParentAccountCodeAlternateKey
+,AccountDescription
+,AccountType
+,Operator
+,ValueType
+
+FROM DimAccount
+WHERE LEFT(AccountCodeAlternateKey,1) <> 9
+
+● DimCalendar
+
+CREATE VIEW vwDimCalendar AS 
+
+SELECT *
+
+FROM dcalendar 
+
+
+● DimOrganization
+CREATE view vwDimOrganization AS 
+
+SELECT  
+ OrganizationKey
+,ParentOrganizationKey
+,OrganizationName
+FROM DimOrganization
+
+WHERE ParentOrganizationKey IS NOT NULL 
+
+● DimScenario
+CREATE VIEW vwDimScenario AS
+SELECT  * FROM DimScenario
+
+● FactSales
+CREATE VIEW vwFactFinance AS 
+
+SELECT
+*
+FROM FactFinance
+
