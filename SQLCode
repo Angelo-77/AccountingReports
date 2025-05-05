@@ -1,52 +1,44 @@
 ## 🛠 SQL Code - Accounting Reports
-Since our dataset was denormalized, i only created views to inpit in PowerBI. In this project we didnt have any hard work with SQL besides the DimCalendar procedure.
+🛠 SQL Code – Accounting Reports
+Since our dataset was denormalized, I only created views to use in Power BI. In this project, we didn’t do much SQL work except for the DimCalendar procedure.
 
-To see the DimCalendar procedure you can click ['DimCalendar'](https://github.com/Angelo-77/AccountingReports/blob/c5f393d9b08d1c09f71dccb35132b390caba89fe/DimCalendar)
-
+You can see the DimCalendar procedure by clicking [here](https://github.com/Angelo-77/AccountingReports/blob/ef7db519229df11037af6ebf2995a27759a03058/DimCalendar)
 
 ##👩‍💻 Views
+-- vwDimAccount
 CREATE VIEW vwDimAccount AS 
 SELECT 
- AccountKey
-,ParentAccountKey
-,AccountCodeAlternateKey
-,ParentAccountCodeAlternateKey
-,AccountDescription
-,AccountType
-,Operator
-,ValueType
-
+ AccountKey,
+ ParentAccountKey,
+ AccountCodeAlternateKey,
+ ParentAccountCodeAlternateKey,
+ AccountDescription,
+ AccountType,
+ Operator,
+ ValueType
 FROM DimAccount
-WHERE LEFT(AccountCodeAlternateKey,1) <> 9
+WHERE LEFT(AccountCodeAlternateKey, 1) <> 9;
 
-● DimCalendar
-
+-- vwDimCalendar
 CREATE VIEW vwDimCalendar AS 
-
 SELECT *
+FROM dcalendar;
 
-FROM dcalendar 
-
-
-● DimOrganization
-CREATE view vwDimOrganization AS 
-
+-- vwDimOrganization
+CREATE VIEW vwDimOrganization AS 
 SELECT  
- OrganizationKey
-,ParentOrganizationKey
-,OrganizationName
+ OrganizationKey,
+ ParentOrganizationKey,
+ OrganizationName
 FROM DimOrganization
+WHERE ParentOrganizationKey IS NOT NULL;
 
-WHERE ParentOrganizationKey IS NOT NULL 
-
-● DimScenario
+-- vwDimScenario
 CREATE VIEW vwDimScenario AS
-SELECT  * FROM DimScenario
+SELECT * FROM DimScenario;
 
-● FactSales
+-- vwFactFinance
 CREATE VIEW vwFactFinance AS 
-
-SELECT
-*
-FROM FactFinance
+SELECT *
+FROM FactFinance;
 
