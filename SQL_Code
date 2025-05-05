@@ -44,7 +44,8 @@ SELECT *
 FROM FactFinance;
 
 
-If you want to see the DimCalendar procedure, click [here](https://github.com/Angelo-77/AccountingReports/tree/main/DimCalendar)
+If you want to see the DimCalendar procedure, click [here](https://github.com/Angelo-77/AccountingReports/tree/581f67ec67ca86d68be7123a6ead5957a4b23be5/DimCalendar).
+
 
 
 
