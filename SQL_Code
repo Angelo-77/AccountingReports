@@ -43,6 +43,9 @@ CREATE VIEW vwFactFinance AS
 SELECT *
 FROM FactFinance;
 
+If you want to see DimCalendar procedure [DimCalendar](https://github.com/Angelo-77/AccountingReports/blob/c3841e6fe21889d9d103a9b63cc4afd4c308ca02/DimCalendar)
+
+
 
 
 
