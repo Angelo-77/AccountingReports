@@ -80,7 +80,7 @@ Icons and tooltips added for better UX
 
 Exported assets and implemented them directly into Power BI
 
-Figma: ![Image](https://github.com/user-attachments/assets/5a4ccefa-74ad-43b3-8201-d5974a3a9602)
+> ![Image](https://github.com/user-attachments/assets/5a4ccefa-74ad-43b3-8201-d5974a3a9602)
 
 
 ## 5. 📈 Business Analysis Report
