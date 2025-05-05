@@ -1,8 +1,9 @@
 ## 📊 Accounting Reports Dashboard
 This project presents a comprehensive financial overview through two interactive Power BI pages:
 
-● Balance Sheet
-● Income Statement
+● Balance Sheet ![Image](https://github.com/user-attachments/assets/6fab2bec-fed7-4cd4-afa1-f98d677e5a12)
+--
+● Income Statement ![Image](https://github.com/user-attachments/assets/b1141529-a8ad-4aa1-ae43-9aba38153d52)
 
 ## 1. 🛠️ SQL Treatments
 All data transformations and aggregations prior to loading into Power BI were handled via SQL, including:
@@ -34,7 +35,7 @@ Filtering of fiscal years
 Merge operations for enhanced context (e.g., Account Descriptions, Departments)
 
 Data Model:
-Star schema format
+Star schema format: ![Image](https://github.com/user-attachments/assets/2e746b22-9e78-4dc2-8450-77fa6476caec)
 
 Key relationships:
 
@@ -59,6 +60,9 @@ Cumulative Measures and Rolling 12-Month Averages
 
 Dynamic titles and KPI cards for enhanced interactivity
 
+Measures divided in folders: ![Image](https://github.com/user-attachments/assets/c986e27a-a89a-4d1c-b70c-d9b717293ed9)
+To see some measures - click in the folder [DaxMeasures](https://github.com/Angelo-77/AccountingReports/blob/3abb17219ab13573b99813746d97a9f4bb0beeb8/DaxMeasures)
+
 ## 4. 🎨 Layout & Design (via Figma)
 Designed wireframes and color palette in Figma
 
@@ -71,6 +75,9 @@ Use of blue and grey tones for professionalism
 Icons and tooltips added for better UX
 
 Exported assets and implemented them directly into Power BI
+
+Figma: ![Image](https://github.com/user-attachments/assets/5a4ccefa-74ad-43b3-8201-d5974a3a9602)
+
 
 ## 5. 📈 Business Analysis Report
 # 5.1 Balance Sheet
