@@ -1,44 +1,50 @@
-## 🛠 SQL Code - Accounting Reports
-🛠 SQL Code – Accounting Reports
-Since our dataset was denormalized, I only created views to use in Power BI. In this project, we didn’t do much SQL work except for the DimCalendar procedure.
+## 🛠 SQL Code – Accounting Reports
 
-You can see the DimCalendar procedure by clicking [here](https://github.com/Angelo-77/AccountingReports/blob/ef7db519229df11037af6ebf2995a27759a03058/DimCalendar)
+This project is based on a **denormalized dataset**, so most of the work in SQL involved creating **views** to be used in **Power BI**.  
+The only custom logic implemented in SQL was the `DimCalendar` procedure.
 
-##👩‍💻 Views
--- vwDimAccount
+👉 You can view the `DimCalendar` procedure [here](https://github.com/Angelo-77/AccountingReports/blob/c5f393d9b08d1c09f71dccb35132b390caba89fe/DimCalendar).
+
+---
+
+## 👩‍💻 SQL Views
+
+Below are the views created to organize and expose the data for reporting:
+
+<details>
+<summary><strong>vwDimAccount</strong></summary>
+
+```sql
 CREATE VIEW vwDimAccount AS 
 SELECT 
- AccountKey,
- ParentAccountKey,
- AccountCodeAlternateKey,
- ParentAccountCodeAlternateKey,
- AccountDescription,
- AccountType,
- Operator,
- ValueType
+    AccountKey,
+    ParentAccountKey,
+    AccountCodeAlternateKey,
+    ParentAccountCodeAlternateKey,
+    AccountDescription,
+    AccountType,
+    Operator,
+    ValueType
 FROM DimAccount
 WHERE LEFT(AccountCodeAlternateKey, 1) <> 9;
 
--- vwDimCalendar
 CREATE VIEW vwDimCalendar AS 
 SELECT *
 FROM dcalendar;
 
--- vwDimOrganization
+
 CREATE VIEW vwDimOrganization AS 
 SELECT  
- OrganizationKey,
- ParentOrganizationKey,
- OrganizationName
+    OrganizationKey,
+    ParentOrganizationKey,
+    OrganizationName
 FROM DimOrganization
 WHERE ParentOrganizationKey IS NOT NULL;
 
--- vwDimScenario
 CREATE VIEW vwDimScenario AS
-SELECT * FROM DimScenario;
+SELECT * 
+FROM DimScenario;
 
--- vwFactFinance
 CREATE VIEW vwFactFinance AS 
 SELECT *
 FROM FactFinance;
-
