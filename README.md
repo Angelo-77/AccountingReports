@@ -34,8 +34,9 @@ Filtering of fiscal years
 
 Merge operations for enhanced context (e.g., Account Descriptions, Departments)
 
-Data Model:
-Star schema format: ![Image](https://github.com/user-attachments/assets/2e746b22-9e78-4dc2-8450-77fa6476caec)
+# Data Model:
+# Star schema format:
+> 📷 ![Image](https://github.com/user-attachments/assets/2e746b22-9e78-4dc2-8450-77fa6476caec)
 
 Key relationships:
 
@@ -60,8 +61,9 @@ Cumulative Measures and Rolling 12-Month Averages
 
 Dynamic titles and KPI cards for enhanced interactivity
 
-Measures divided in folders: ![Image](https://github.com/user-attachments/assets/c986e27a-a89a-4d1c-b70c-d9b717293ed9)
-To see some measures - click in the folder [DaxMeasures](https://github.com/Angelo-77/AccountingReports/blob/3abb17219ab13573b99813746d97a9f4bb0beeb8/DaxMeasures)
+Measures divided in folders: 
+📷 ![Image](https://github.com/user-attachments/assets/c986e27a-a89a-4d1c-b70c-d9b717293ed9)
+To see some measures you can click in this folder [DaxMeasures](https://github.com/Angelo-77/AccountingReports/blob/3abb17219ab13573b99813746d97a9f4bb0beeb8/DaxMeasures)
 
 ## 4. 🎨 Layout & Design (via Figma)
 Designed wireframes and color palette in Figma
