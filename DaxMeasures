@@ -1,0 +1,539 @@
+## 💹 Dax Measures
+
+# 🧲 Here are some examples of measures, i`m not showing all formulas. If you want all measures, you can contact with me. 
+
+## 🛠 Balance Sheet Measures
+
+● M | % BalanceSheet Amount (Assets - Change - PercentImg) = 
+VAR vAmountACT = 
+
+    CALCULATE(
+        SUMX(
+            vwFactFinance,
+            [M | $ BalanceSheetAMT]
+        ),
+        vwDimAccount[Side] = "Assets"
+    )
+
+VAR vPrevAmount = 
+    CALCULATE(
+        SUMX(
+            vwFactFinance,
+            [M | $ BalanceSheetAMT]
+        ),
+        vwDimAccount[Side] = "Assets",
+        DATEADD(
+            vwDimCalendar[date],
+            -1,
+            YEAR
+        )
+    )
+
+
+VAR vPercent = DIVIDE(
+    vAmountACT,
+    vPrevAmount
+   ) - 1
+
+
+VAR vSymbol = 
+    SWITCH(
+        TRUE(),
+        vPercent >0,
+        "⮝",
+        vPercent <0,
+        "⮟",
+        "-"
+    )
+   
+VAR vFormat = 
+    FORMAT(
+        vPercent,"#.00%"
+    )
+
+RETURN
+    vFormat & vSymbol
+
+
+● M | % BalanceSheet Amount (Assets - Change) = 
+VAR vAmountACT = 
+
+    CALCULATE(
+        SUMX(
+            vwFactFinance,
+            [M | $ BalanceSheetAMT]
+        ),
+        vwDimAccount[Side] = "Assets"
+    )
+
+VAR vPrevAmount = 
+    CALCULATE(
+        SUMX(
+            vwFactFinance,
+            [M | $ BalanceSheetAMT]
+        ),
+        vwDimAccount[Side] = "Assets",
+        DATEADD(
+            vwDimCalendar[date],
+            -1,
+            YEAR
+        )
+    )
+
+
+VAR vPercent = DIVIDE(
+    vAmountACT,
+    vPrevAmount
+   ) - 1
+
+
+VAR vSymbol = 
+    SWITCH(
+        TRUE(),
+        vPercent >0,
+        "⮝",
+        vPercent <0,
+        "⮟",
+        "-"
+    )
+   
+
+
+RETURN
+vPercent
+
+● M | $ BalanceSheet Amount (Assets - Change) = 
+VAR vAmountACT = 
+
+    CALCULATE(
+        SUMX(
+            vwFactFinance,
+            [M | $ BalanceSheetAMT]
+        ),
+        vwDimAccount[Side] = "Assets"
+    )
+
+VAR vPrevAmount = 
+    CALCULATE(
+        SUMX(
+            vwFactFinance,
+            [M | $ BalanceSheetAMT]
+        ),
+        vwDimAccount[Side] = "Assets",
+        DATEADD(
+            vwDimCalendar[date],
+            -1,
+            YEAR
+        )
+    )
+
+
+VAR vSymbol = 
+    SWITCH(
+        TRUE(),
+        [M | % BalanceSheet Amount (Assets - Change)] >0,
+        "⮝",
+        [M | % BalanceSheet Amount (Assets - Change)] <0,
+        "⮟",
+        "-"
+    )
+
+
+VAR vAmount = vAmountACT - vPrevAmount
+
+
+VAR vFormat = 
+
+    SWITCH(
+        TRUE(),
+        vAmount >=1e6,
+        FORMAT(
+            vAmount,
+            "#,0,,\M"
+        ),
+        vAmount >=1e3
+        &&
+        vAmount <1e6
+        ,
+        FORMAT(
+            vAmount,
+            "#,0,\K"
+        ),
+        FORMAT(
+            vAmount,
+            "#,0"
+        )
+    )
+
+RETURN
+
+   vFormat & vSymbol
+
+    
+● M | % VerticalAnalysis = 
+
+VAR vAmount = ABS([M | $ BalanceSheetAMT])
+
+VAR vTotal = 
+    ABS(CALCULATE([M | $ BalanceSheetAMT],
+
+        ALL(
+            vwDimAccount
+        ),
+        vwDimAccount[2nd Level] = "Assets")
+    )
+RETURN
+
+    DIVIDE(
+        vAmount,
+        vTotal
+    )
+
+
+● M | $ BalanceSheetAMT = 
+
+    SWITCH(
+        TRUE(),
+                    (
+                        LEFT(
+                        SELECTEDVALUE(
+                            vwDimAccount[1st Level]
+                        ),3
+                    )= "Net" && 
+                        SELECTEDVALUE(
+                            vwDimAccount[3rd Level]
+                        ) = "Operating Expenses"
+                    ) || 
+
+            SELECTEDVALUE(
+                vwDimAccount[AccountType]
+            ) = "Expenditures",
+
+            - SUMX(
+                vwFactFinance,
+                vwFactFinance[Amount]
+            ),
+        LEFT(
+            SELECTEDVALUE(
+                vwDimAccount[1st Level]
+            ),3
+        )= "Net" && 
+            NOT
+            SELECTEDVALUE(
+                vwDimAccount[3rd Level]
+            ) = "Operating Expenses",
+
+             SUMX(
+                vwFactFinance,
+                vwFactFinance[Amount]
+            ),
+        
+        SELECTEDVALUE(vwDimAccount[2nd Level]) = "Liabilities and Owners Equity",
+        - SUMX(
+            vwFactFinance,
+            vwFactFinance[Amount]
+        ),
+        SELECTEDVALUE(vwDimAccount[2nd Level]) = "Assets",
+
+        SUMX(
+            vwFactFinance,
+            vwFactFinance[Amount]
+        ),
+        ISINSCOPE(
+            vwDimAccount[1st Level]
+        ) && 
+        SELECTEDVALUE(
+            vwDimAccount[1st Level]) = "Balance Sheet" || 
+            NOT
+            ISINSCOPE(
+                vwDimAccount[2nd Level]
+            ),
+        CALCULATE(
+            - SUMX(
+                vwFactFinance,
+                vwFactFinance[Amount]
+            ),
+            vwDimAccount[2nd Level] = "Liabilities and Owners Equity"
+        ) + 
+        CALCULATE(
+             SUMX(
+                vwFactFinance,
+                vwFactFinance[Amount]
+            ),
+            vwDimAccount[2nd Level] = "Assets"
+        ),
+        SUMX(
+                vwFactFinance,
+                vwFactFinance[Amount]
+            )
+    )
+
+
+## 📉 Income Statement Measures
+
+● M | % VerticalAnalysis(Inc) = 
+
+VAR vAmount = [M | $ IncomeStatement AMT]
+VAR vTotal = 
+    
+    SWITCH(
+        TRUE(),
+         NOT
+        ISBLANK(
+            CALCULATE(
+                [M | $ IncomeStatement AMT],
+                FILTER(
+                    vwDimAccount,
+                    [2nd Level] = "Operating Profit" && 
+                    NOT
+                    [5th Level] = "Gross Sales"
+                )
+            )
+        )
+        ,
+        CALCULATE(
+                [M | $ IncomeStatement AMT],
+                FILTER(
+                    ALL(
+                        vwDimAccount
+                    ),
+                    vwDimAccount[4th Level] = "Net Sales"
+                   
+                )
+            ),
+        NOT
+        ISBLANK(
+            CALCULATE(
+                [M | $ IncomeStatement AMT],
+                FILTER(
+                    vwDimAccount,
+                    [2nd Level] = "Operating Profit" &&
+                    [5th Level] = "Gross Sales" &&  
+                    NOT
+                    ISBLANK(
+                        [6th Level]
+                    )
+                
+                )
+            )
+        ),
+        CALCULATE(
+                [M | $ IncomeStatement AMT],
+                FILTER(
+                    ALL(vwDimAccount),
+                    [2nd Level] = "Operating Profit" &&
+                    [5th Level] = "Gross Sales"
+                )
+            ),
+        NOT
+        ISBLANK(
+            CALCULATE(
+                [M | $ IncomeStatement AMT],
+                FILTER(
+                    vwDimAccount,
+                    [2nd Level] = "Operating Profit" &&
+                    [4th Level] = "Net Sales"
+                )
+            )
+        ) || 
+        NOT
+        ISBLANK(
+            CALCULATE(
+                [M | $ IncomeStatement AMT],
+                FILTER(
+                    vwDimAccount,
+                    [4th Level] = "Total Cost of Sales"
+                )
+            )
+        ) ||
+        NOT
+        ISBLANK(
+            CALCULATE(
+                [M | $ IncomeStatement AMT],
+                FILTER(
+                    vwDimAccount,
+                    [2nd Level] = "Other Income and Expense"
+                )
+            )
+        ) || 
+        NOT
+        ISBLANK(
+            CALCULATE(
+                [M | $ IncomeStatement AMT],
+                FILTER(
+                    vwDimAccount,
+                    [2nd Level] = "Taxes"
+                )
+            )
+        )
+        ,
+        CALCULATE(
+                [M | $ IncomeStatement AMT],
+                FILTER(
+                    ALL(
+                        vwDimAccount
+                    ),
+                    vwDimAccount[4th Level] = "Net Sales"
+                   
+                )
+            ),
+        NOT
+        ISBLANK(
+            CALCULATE(
+                [M | $ IncomeStatement AMT],
+                FILTER(
+                    vwDimAccount,
+                    [3rd Level] = "Operating Expenses"
+                )
+            )
+        ) 
+        ,
+        CALCULATE(
+                [M | $ IncomeStatement AMT],
+                FILTER(
+                    ALL(
+                        vwDimAccount
+                    ),
+                    vwDimAccount[3rd Level] = "Operating Expenses"
+                   
+                )
+            )
+    )
+
+RETURN
+
+    DIVIDE(
+        ABS(vAmount),
+        ABS(vTotal)
+    )
+
+
+● M | % ProfitMargin = 
+
+VAR vNetIncome = 
+    CALCULATE(
+        [M | $ IncomeStatement AMT],
+        vwDimAccount[1st Level] = "Net Income"
+    )
+VAR vNetSales = 
+    CALCULATE(
+        [M | $ IncomeStatement AMT],
+        vwDimAccount[4th Level] = "Net Sales" 
+    )
+
+RETURN 
+
+    DIVIDE(
+        vNetIncome,
+        vNetSales
+    )
+
+
+● M | $ OperatingProfit = 
+VAR vAmount = 
+
+    CALCULATE(
+        [M | $ IncomeStatement AMT],
+        vwDimAccount[2nd Level] = "Operating Profit"
+    )
+
+VAR vFormat = 
+    SWITCH(
+        TRUE(),
+        ABS(vAmount) >= 1e6,
+        FORMAT(
+            vAmount,
+            "#,0,,.00\M"
+        ),
+        ABS(vAmount) >= 1e3 &&
+        ABS(vAmount) < 1e6,
+        FORMAT(
+            vAmount,
+            "#,0,.00\K"
+        ),
+        FORMAT(
+            vAmount,
+            "#,0.00"
+        )
+    )
+
+RETURN
+
+vAmount
+
+
+● M | SyM %NetIncome = 
+
+ VAR vNetIncome = ABS([M | $ NetIncome])
+ VAR vNetIncomeLY = 
+    CALCULATE(
+        ABS([M | $ NetIncome]),
+        DATEADD(
+            vwDimCalendar[date],
+            -1,
+            YEAR
+        )
+    )
+
+
+VAR vNetSales = [M | $ NetSales]
+VAR vNetSalesLY = 
+    CALCULATE(
+        [M | $ NetSales],
+        DATEADD(
+            vwDimCalendar[date],
+            -1,
+            YEAR
+        )
+    )
+
+VAR vPercentACT = 
+    DIVIDE(
+        vNetIncome,
+        vNetSales
+    )
+
+VAR vPercentLY = 
+    DIVIDE(
+        vNetIncomeLY,
+        vNetSalesLY
+    )
+
+
+VAR vDivide = 
+    DIVIDE(
+        vPercentACT,
+        vPercentLY
+    ) - 1
+
+VAR vFormatDivide = 
+    FORMAT(
+        vPercentACT,
+        "#.00%"
+    )
+
+
+VAR vSymbol = 
+    SWITCH(
+        TRUE(),
+        vDivide > 0,
+        "⮝",
+        vDivide < 0, 
+        "⮟",
+        "-"
+    )
+
+
+RETURN
+
+vFormatDivide & vSymbol
+
+
+
+
+
+
+
+
+    
+
