@@ -1,6 +1,8 @@
 ## 🛠 SQL Code - Accounting Reports
 Since our dataset was denormalized, i only created views to inpit in PowerBI. In this project we didnt have any hard work with SQL besides the DimCalendar procedure.
-> 🛠 To see some measures you can click in this folder [DimCalendar](https://github.com/Angelo-77/AccountingReports/blob/7334fac0132cca0b7d09050e0043e6596a5016e7/DimCalendar)
+
+To see the DimCalendar procedure you can click ['DimCalendar'](https://github.com/Angelo-77/AccountingReports/blob/c5f393d9b08d1c09f71dccb35132b390caba89fe/DimCalendar)
+
 
 ##👩‍💻 Views
 CREATE VIEW vwDimAccount AS 
