@@ -124,8 +124,3 @@ I’m passionate about creating powerful BI solutions that improve decision-maki
 Power BI | SQL | Excel | VBA | ETL | Business Intelligence | KPI Development  
 
 ---
-
-
-Reassess CapEx strategy to ensure fixed asset investments are necessary and productive.
-
-Keep monitoring the balance between Operating Expenses and Revenue Growth to protect profitability.
